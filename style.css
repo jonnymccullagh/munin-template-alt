@@ -1,0 +1,396 @@
+/* -------------------------------------------
+
+I found a download for an improved Munin layout at:
+http://www.mabishu.com/blog/2010/03/24/improve-munin-stats-page-with-new-layout-and-plugins/
+However I found there was some missing styles.
+I have taken that download as a starting point and spent a few hours 
+adding a few CSS rules to fix the layout. My additions are
+at the top of this file and Mabishu's CSS is below.
+I have made very few changes to the original tmpl files to keep things simple.
+I have also added a wee Munin raven icon.
+
+INSTALLATION:
+- Move to your Munin configuration directory e.g.
+	cd /etc/munin
+- Extract the tar file contents - you should see a directory named templates_new
+- Move your current templates directory e.g. 
+	mv ./templates ./templates_default
+- Move the new templates directory into place
+	mv ./templates_new ./templates
+- Move to your munin www directory e.g.
+	cd /var/www/munin
+- Remove the existing css, and image files (if present)
+	rm ./style.css ./logo.png ./favicon.ico
+- Wait five minutes and check that the new template is being used. If there
+  are any problems check the source for broken paths.
+
+
+
+CSS Custom Additions by Jonny McCullagh - Start here
+
+---------------------------------------------- */
+#content ul, ul#domains {
+                counter-reset: li; /* Initiate a counter */
+        list-style: none; /* Remove default numbering */
+        *list-style: decimal; /* Keep using default numbering for IE6/7 */
+        font: 15px 'trebuchet MS', 'lucida sans';
+        padding: 0;
+        margin-bottom: 1em;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+#content ul li a:first-child, ul#domains li a:first-child {
+        position: relative;
+        display: block;
+        padding: .4em .4em .4em .8em;
+        *padding: .4em;
+        margin: .5em 0 .5em 0em;
+        background: #800080;
+        color: #fff;
+        text-decoration: none;
+        transition: all .3s ease-out;
+}
+
+
+
+
+#content ul li ul, ul#domains li ul {
+		counter-reset: li; /* Initiate a counter */
+	list-style: none; /* Remove default numbering */
+	*list-style: decimal; /* Keep using default numbering for IE6/7 */
+	font: 15px 'trebuchet MS', 'lucida sans';
+	padding: 0;
+	margin-bottom: 4em;
+	margin-left: 2em;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5);
+
+}
+#content ul li ul ul, ul#domains li ul ul {
+
+	margin: 0 0 0 2em;
+}
+#content ul li ul li, ul#domains li ul li {
+	line-height: 2.0em;
+	background: #ddd;
+}
+#content ul li ul li:hover, ul#domains li ul li:hover {
+        background: #eee;
+}
+#content ul li ul li a:first-child, ul#domains li ul li a:first-child {
+	position: relative;
+	display: inline;
+	padding: .4em .4em .4em .8em;
+	*padding: .4em;
+	margin: .5em 0 .5em 2.5em;
+	background: #ddd;
+	color: #444;
+	text-decoration: none;
+	transition: all .3s ease-out;	
+}
+
+#content ul li ul li  a:first-child:hover, ul#domains li ul li  a:first-child:hover{
+	background: #eee;
+}	
+
+#content ul li ul li  a:first-child:before, ul#domains li ul li  a:first-child:before{
+	content: counter(li);
+	counter-increment: li;
+	position: absolute;	
+	left: -2.5em;
+	top: 50%;
+	margin-top: -1em;
+	background: #eee;
+	height: 2em;
+	width: 2em;
+	line-height: 2em;
+	text-align: center;
+	font-weight: bold;
+}
+
+#content ul li ul li  a:first-child:after, ul#domains li ul li  a:first-child:after{
+	position: absolute;	
+	content: '';
+	border: .5em solid transparent;
+	left: -1em;
+	top: 50%;
+	margin-top: -.5em;
+	transition: all .3s ease-out;				
+}
+
+#content ul li ul li  a:first-child:hover:after, ul#domains li ul li  a:first-child:hover:after{
+	left: -.5em;
+	border-left-color: #fa8072;				
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+	#content-with-fixed-width {
+		width: 1080px;
+		clear:both;
+	}
+	#content {
+		clear:both;
+	}
+	#header img {
+		float: left;
+		margin-right: 1.2em;
+		margin-bottom: 1.2em;
+	}
+        div.category{
+		padding: 10px;
+                display:none;
+                border:1px solid #000000;
+                background-color:#f5f5f5;
+		border-radius: 5px; 
+		-moz-border-radius: 5px; 
+		-webkit-border-radius: 5px; 
+		border: 2px solid #CCCCCC;
+        }
+        ul#menu{
+                list-style-type:none;
+		margin:0;
+		padding:0;
+		display:block;
+		height:26px;
+        }
+        ul#menu li {
+                display:inline;
+		padding: 10px;
+		/*border-radius: 5px 5px 0px 0px; 
+		-moz-border-radius: 5px 5px 0px 0px; 
+		-webkit-border-radius: 5px 5px 0px 0px; 
+		border-top: 2px solid #CCCCCC;
+		border-left: 2px solid #CCCCCC;
+		border-right: 2px solid #CCCCCC;
+		background-color:#f5f5f5;
+		*/
+        }
+	ul#menu li a {
+		text-decoration: none;
+		color: #000;
+		font-size: 1.2em;
+		font-weight: bold;
+		font-family: Trebuchet, Helvetica, Arial, sans-serif;
+	}
+	ul#menu li a:hover {
+		color: #800080;
+		border-bottom: 3px solid #800080;
+	}
+	#current{
+		border-bottom: 3px solid #000;
+	}
+/* -------------------------------------------
+CSS Custom Additions by Jonny McCullagh - End here
+
+
+Mabishu's CSS starts here
+---------------------------------------------- */
+
+
+body, h1, h2, h3, p, span, div { 
+  font-family: verdana, helvetica, arial, sans-serif;
+  font-size: small;
+ }
+
+body { 
+  background-color: #ffffff;
+  color: #000000;
+  
+ }
+
+h3.nobottom {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+div.logo { 
+  background-image: url(logo.png);
+  background-repeat: no-repeat;  
+  width: 41px;
+  height: 59px;
+} 
+
+div.lighttext { 
+  background-color: #ffffff;
+  color: #777777;
+  font-style: italic;
+  
+ }
+
+.domain { 
+  font-size: medium;
+  font-weight: bold;
+ }
+
+.host { 
+  font-weight: bold;
+ }
+
+.center { 
+  text-align: center;
+}
+
+.small { 
+  font-size: smaller;
+ }
+
+.noborder { 
+  border-width: 0px;
+  border-collapse: collapse;
+ }
+
+table.largeinvisiblebox {
+        border-width: thin;
+        border-top: 0px;
+        border-bottom: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-color: #999;
+        border-style: solid;
+        padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	white-space: nowrap;
+	max-width: 90%;
+        width: 80%;
+}
+
+table.invisiblebox {
+        border-width: thin;
+        border-top: 0px;
+        border-bottom: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-color: #999;
+        border-style: solid;
+        padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	white-space: nowrap;
+	width: 1%;
+}
+
+td.graphbox {
+        border-width: thin;
+        border-top: 1px;
+        border-bottom: 1px;
+        border-left: 1px;
+        border-right: 1px;
+        border-color: #999;
+        border-style: solid;
+        padding: 4px 4px 4px 4px;
+	margin: 0px 0px 0px 0px;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.box {
+        border-width: thin;
+        border-top: 1px;
+        border-bottom: 1px;
+        border-left: 1px;
+        border-right: 1px;
+        border-color: #999;
+        border-style: solid;
+        padding: 4px 4px 4px 4px;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+        width: 80%;
+        max-width: 90%
+}
+
+td.legendbox {
+        border-width: thin;
+        border-top: 1px;
+        border-bottom: 1px;
+        border-left: 1px;
+        border-right: 1px;
+        border-color: #999;
+        border-style: solid;
+        padding: 8px 4px 2px 2px;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+	width: 100%;
+}
+
+td.wrap {
+	white-space: normal;
+	max-width: 1%;
+}
+
+td.linkbox {
+        border-width: thin;
+        border-top: 1px;
+        border-bottom: 1px;
+        border-left: 1px;
+        border-right: 1px;
+        border-color: #999;
+        border-style: solid;
+        padding: 4px 4px 4px 4px;
+        margin: 2px 2px 2px 2px;
+	width: 100%;
+}
+
+.warntext {
+  font-weight: bold;
+  background-color: #cccc00;
+}
+
+.crittext {
+  font-weight: bold;
+  background-color: #ff6f22;
+}
+
+.ruler {
+  background-color: #999999;
+  border: 0px;
+  height: 1px;
+}
+
+.ruler2 {
+  background-color: #999999;
+  border: 0px;
+  height: 2px;
+}
+
+a.meek:link { 
+  color: #486aaf;
+  font-size: small;
+ }
+
+a.meek:visited { 
+  color: #af1a00;
+  font-size: small;
+ }
+
+a.meek:active { 
+  color: #486aaf;
+  font-size: small;
+ }
+
+a.meek:hover { 
+  color: #999999;
+  font-size: small;
+ }
+
+
+a.warn:link    { color: #cc9900; }
+a.warn:visited { color: #cc9900; }
+a.warn:active  { color: #cc9900; }
+a.warn:hover   { color: #cc9900; }
+
+a.crit:link    { color: #cc0000; } 
+a.crit:visited { color: #cc0000; } 
+a.crit:active  { color: #cc0000; } 
+a.crit:hover   { color: #cc0000; } 
+
+a:link    { color: #486aaf; } 
+a:visited { color: #486aaf; } 
+a:active  { color: #486aaf; } 
+a:hover   { color: #486aaf; } 
